@@ -15,4 +15,9 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}  
       - name: Verify AWS identity
         run: aws sts get-caller-identity
+      - name: Code static code to S3
+        run: |
+         aws s3 sync ./ s3://vam-gha-staticweb-demo/ \
+         --exclude"*" \
+         --include "index.html"
     
